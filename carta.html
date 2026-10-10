@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para mi novio 💌</title>
+<style>
+body {
+margin: 0;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #fdf2f6;
+font-family: Georgia, serif;
+overflow-x: hidden;
+}
+#sobre {
+width: 240px;
+height: 160px;
+background: #b6e6ff;
+color: white;
+border-radius: 14px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: 60px;
+cursor: pointer;
+animation: latido 1.2s infinite;
+}
+#sobre p {
+font-size: 16px;
+margin: 8px 0 0;
+}
+#carta {
+display: none;
+width: 85%;
+max-width: 420px;
+margin: 30px 0;
+background: white;
+padding: 25px;
+border-radius: 16px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+#carta.visible {
+display: block;
+animation: aparecer 0.8s;
+}
+h1,h2 {
+color: #b6e6ff;
+}
+button {
+background: #b6e6ff;
+color: white;
+border: none;
+padding: 12px 20px;
+border-radius: 30px;
+font-size: 16px;
+}
+.corazon {
+position: fixed;
+bottom: -40px;
+font-size: 28px;
+animation: subir 3s linear forwards;
+}
+@keyframes latido {
+50% {transform: scale(1.1); }
+}
+@keyframes aparecer {
+from { opacity: 0; transform: scale (0.5);}
+to { opacity: 1; transform: scale(1);}
+}
+@keyframes subir {
+to{transform: translateY(-110vh);opacity: 0;}
+}
+</style>
+</head>
+<body>
+<div id="sobre">
+💌
+<p>Toca aquí, mi novio</p>
+</div>
+<div id="carta">
+<h1>Amor mio: mi novio:</h1>
+<p>¿Te acuerdas la primera vez que salimos?,esa vez en donde nos dimos nuestro primeros besos y empezamos a construir nuestra historia de amor, jamás pensé en tener una relación tan hermosa como la que tenemos, sé que tenemos diferencias pero todo se soluciona y en esta carta quiero que sepas que admiro todo de ti pero hay cosas que amo mucho…</p>
+<h2>Cosas que admiro de ti</h2>
+<ul>
+<li>Eres muy inteligente,sabes de cualquier tema y eres muy crítico 🧠</li>
+<li>Tu capacidad de salir adelante y querer triunfar 🐳</li>
+<li>Siempre consigues lo que quieres 💰</li>
+</ul>
+<p>Gracias por darme todo tu amor y</p>
+<p>Con cariño,<br>amorcito</p>
+<button id="boton">Dame otra razón 💖</button>
+<p id="mensaje"></p>
+</div>
+<script>
+const razones= [
+"Porque eres amoroso 😻",
+"porque eres un increíble ser humano ❤️",
+"porque eres comprensivo 👩‍❤️‍👨"
+];
+const sobre= document.getElementById("sobre");
+const carta= document.getElementById("carta");
+const boton= document.getElementById("boton");
+const mensaje= document.getElementById("mensaje");
+sobre.onclick=function () {
+sobre.style.display= "none";
+carta.classList.add("visible");
+lluvia();
+};
+boton.onclick = function () {
+const n= Math.floor(Math.random() * razones.length);
+mensaje.textContent= razones[n];
+lluvia();
+};
+function lluvia() {
+for (let i= 0; i < 15; i++) {
+const c= document.createElement("span");
+c.className = "corazon";
+c.textContent= "💖";
+c.style.left= Math.random() * 90 + "vw";
+c.style.animationDelay = Math.random()+ "s";
+document.body.appendChild(c);
+setTimeout(function () { c.remove();}, 4000);
+}
+}
+</script>
+</body>
+</html>
